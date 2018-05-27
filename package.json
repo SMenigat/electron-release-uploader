@@ -1,0 +1,22 @@
+{
+  "name": "electron-release-uploader",
+  "version": "1.0.0",
+  "description": "Tars an electron build and uploads it to an electron-update-host 📦⬆️ ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SMenigat/electron-release-uploader.git"
+  },
+  "author": "Samuel Menigat <samuel.menigat@gmail.com>",
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/SMenigat/electron-release-uploader/issues"
+  },
+  "homepage": "https://github.com/SMenigat/electron-release-uploader#readme",
+  "dependencies": {
+    "archiver": "^2.1.1"
+  }
+}
