@@ -53,7 +53,7 @@ class ReleaseBundler {
       // add linux app
       const linuxApp = this.getLatestFileByExtention('.AppImage');
       if (linuxApp) {
-        archive.file(this.getFullPath(linuxApp), { name: `mac/${linuxApp}` });
+        archive.file(this.getFullPath(linuxApp), { name: `linux/${linuxApp}` });
       }
 
       // close archive
