@@ -1,6 +1,6 @@
 {
   "name": "electron-release-uploader",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Tars an electron build and uploads it to an electron-update-host 📦⬆️ ",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,7 @@
     "archiver": "^2.1.1",
     "form-data": "^2.3.2",
     "lodash.replace": "^4.1.4",
-    "node-fetch": "^2.1.2"
+    "node-fetch": "^2.1.2",
+    "prompt": "^1.0.0"
   }
 }
