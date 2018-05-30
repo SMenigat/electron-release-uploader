@@ -1,6 +1,6 @@
 {
   "name": "electron-release-uploader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tars an electron build and uploads it to an electron-update-host 📦⬆️ ",
   "main": "index.js",
   "scripts": {
