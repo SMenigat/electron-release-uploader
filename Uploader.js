@@ -1,6 +1,5 @@
 const fs = require("fs");
-const fetch = require("node-fetch");
-const FormData = require('form-data');
+const request = require("request");
 
 class Uploader {
   constructor(passwordHeaderName = null, password = null) {
@@ -10,20 +9,37 @@ class Uploader {
   async upload(filePath, targetUrl, fileParamName = "app-update") {
     return new Promise(resolve => {
 
-      // prepare form data
-      const form = new FormData();
-      form.append(fileParamName, fs.createReadStream(filePath));
+        // set password header if needed
+        const headers = {
+            'Cache-Control': 'no-cache',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          };
+        if (this.passwordHeaderName && this.password) {
+          headers[this.passwordHeaderName] = this.password;
+        }
 
-      // set password header if needed
-      if (this.passwordHeaderName && this.password) {
-        form.append(this.passwordHeaderName, this.password);
-      }
+      const options = {
+        method: 'POST',
+        url: targetUrl,
+        headers,
+        formData:
+          {
+            [fileParamName]:
+            {
+              value: fs.createReadStream(filePath),
+              options:
+                {
+                  filename: filePath,
+                  contentType: null
+                }
+            }
+          }
+      };
 
-      // sumit this formdata
-      fetch(targetUrl, { method: 'POST', body: form })
-        .then(function (response) {
-          resolve(response);
-        }).catch(error => { console.warn(error); resolve(null); });
+      request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        resolve(response);
+      });
     });
   }
 }

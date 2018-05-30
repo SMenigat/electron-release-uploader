@@ -37,10 +37,16 @@ async function main() {
       console.log(`⏳ Uploading file to ${targetUrl}`);
       const uploader = new Uploader(passwordHeaderName, password);
       const uploadResponse = await uploader.upload(bundlePath, targetUrl);
-      if (uploadResponse !== null) {
-        console.log('✅ Tar bundle successfully uploaded.');
-      } else {
-        console.log('🔥 Error while uploading the tar bundle.');
+
+      // reflect update status in console
+      const { statusCode, statusMessage } = uploadResponse;
+      switch(statusCode) {
+        case 200:
+          return console.log('✅ Tar bundle successfully uploaded.');
+        case 401:
+          return console.error('🔑 Your entered password seems to be wrong.', `${statusCode}: ${statusMessage}`);
+        default: 
+          return console.log('🔥 Error while uploading the tar bundle.', `${statusCode}: ${statusMessage}`);
       }
     } else {
       console.log('⏭ Skipping upload since no "uploadTargetUrl" is set.');

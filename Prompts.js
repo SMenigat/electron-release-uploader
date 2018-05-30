@@ -19,7 +19,7 @@ class Prompts {
       };
       prompt.start();
       prompt.get(schema, function (err, result) {
-        resolve(result.password);
+        resolve(result.password.toString().trim());
       });
     });
   }
